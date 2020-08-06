@@ -99,17 +99,25 @@ rotate ([0,0,180])translate ([-(numberof_fingers*(finger_width+finger_gap))/2,-f
         { 
        if (mount_holes=="yes")
             {
-            rotate ([back_tilt,0,0]) 
+            rotate ([back_tilt,0,0]) {
                 difference()
                 {
-                cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,back_height]);//make plate with auto width based on fingers+width+gap
-                Holes ();
+                    hull() {
+                        cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,back_height]);//make plate with auto width based on fingers+width+gap
+                        rotate ([-back_tilt,0,0]) color("green") cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,.001]);
+                    }
+                    Holes ();
                 };
             }
+        }
         else
             {
-            rotate ([back_tilt,0,0]) 
-                cube ([(numberof_fingers*(finger_width+finger_gap)),back_thickness,back_height]);//make plate with auto width based on fingers+width+gap
+            rotate ([back_tilt,0,0]) {
+                hull() {
+                    cube ([(numberof_fingers*(finger_width+finger_gap)),back_thickness,back_height]);//make plate with auto width based on fingers+width+gap
+                    rotate ([-back_tilt,0,0]) color("green") cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,.001]);
+                }
+            }
         }
     trim_sides();
     }
