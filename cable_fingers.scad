@@ -103,8 +103,9 @@ rotate ([0,0,180])translate ([-(numberof_fingers*(finger_width+finger_gap))/2,-f
                 difference()
                 {
                     hull() {
-                        cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,back_height]);//make plate with auto width based on fingers+width+gap
-                        rotate ([-back_tilt,0,0]) color("green") cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,.001]);
+                        translate([0,0,back_height + sin(back_tilt) * back_thickness]) rotate ([-back_tilt,0,0])  cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,.001]);
+//                        cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,back_height]);//make plate with auto width based on fingers+width+gap
+                        rotate ([-back_tilt,0,0])  cube([(numberof_fingers*(finger_width+finger_gap)),back_thickness,.001]);
                     }
                     Holes ();
                 };
