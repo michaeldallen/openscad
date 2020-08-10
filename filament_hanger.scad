@@ -1,13 +1,13 @@
 
 
-shaft_length = 130;
-top_tail_length = 10;
+shaft_length = 190;
+top_tail_length = 20;
 bottom_tail_length = 20;
 
 hook_diameter = 30;
 
-roundcorner = true;
-//roundcorner = false;
+//roundcorner = true;
+roundcorner = false;
 
 girth = roundcorner ? 5 : 10;
 $fn = roundcorner ? 125 : 10;
@@ -37,17 +37,10 @@ minkowski() {
             }
 
             //top front spur
-            translate([girth/2, -((hook_diameter / 2) + (girth / 2)), 0]) {
+            translate([top_tail_length - (girth / 2), -((hook_diameter / 2) + (girth / 2)), 0]) {
                 cube([girth, girth, girth], center = true);
             }
         
-/*
-            //top back spur
-            translate([girth/2, ((hook_diameter / 2) + (girth / 2)), 0]) {
-                cube([girth, girth, girth], center = true);
-            }
-*/
-
         }
         
         
