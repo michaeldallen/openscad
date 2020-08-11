@@ -1,7 +1,7 @@
 
 
 shaft_length = 190;
-top_tail_length = 20;
+top_tail_length = 30;
 bottom_tail_length = 20;
 
 hook_diameter = 30;
