@@ -2,7 +2,7 @@ roundcorner = true;
 //roundcorner = false;
 
 
-$fn = roundcorner ? 250 : 20;
+$fn = roundcorner ? 50 : 50;
 
 
 roundcorner_size = roundcorner ? 5 : 0;
@@ -10,11 +10,11 @@ roundcorner_size = roundcorner ? 5 : 0;
 roller_main_shaft_length = 110;
 roller_diameter = 50;
 
-hanger_slot_span = 15;
-hanger_slot_span_slop = 0.0;
+hanger_slot_span_slop = 0.1;
+hanger_slot_span = 15 + hanger_slot_span_slop;
 
-hanger_slot_width = 10;
 hanger_slot_width_slop = 0.0;
+hanger_slot_width = 10 + hanger_slot_width_slop;
 
 cap_crown_height = 10;
 cap_funnel_height = 10;
@@ -28,7 +28,7 @@ module yardstick() {
 
 module spine () {
 
-    hull () {
+    color("purple") hull () {
         translate([      (roller_diameter / 2) - (hanger_slot_span / 2), 0, 0] ) {
             cylinder(d = hanger_slot_span, h = roller_main_shaft_length + ((hanger_slot_width + cap_funnel_height) * 2), center = true);
         }
@@ -53,13 +53,13 @@ module cap () {
 
     translate([0, 0, (roller_main_shaft_length / 2) + hanger_slot_width]) {
         
-        hull () {
+        color("pink") hull () {
 
             translate([      (roller_diameter / 2) - (hanger_slot_span / 2), 0, cap_funnel_height / 2] ) {
-                cylinder(d = hanger_slot_span, h = cap_funnel_height, center = true);
+                color("green") cylinder(d = hanger_slot_span, h = cap_funnel_height, center = true);
             }
             translate([-1 * ((roller_diameter / 2) - (hanger_slot_span / 2)), 0, cap_funnel_height / 2]) {
-                cylinder(d = hanger_slot_span, h = cap_funnel_height, center = true);
+                color("blue") cylinder(d = hanger_slot_span, h = cap_funnel_height, center = true);
             }
 
 
@@ -81,12 +81,13 @@ module cap () {
     }
 }
 
-spine();
-torso();
-cap();
-rotate([180, 0, 0]) cap();
-
-//yardstick();
+rotate([0, 90, 0]) {
+    spine();
+    torso();
+    cap();
+    rotate([180, 0, 0]) cap();
+    //yardstick();
+}
 
 
 
