@@ -1,8 +1,11 @@
-roundcorner = true;
-//roundcorner = false;
+//roundcorner = true;
+roundcorner = false;
+
+//rc = true; 
+rc = false;
 
 
-$fn = roundcorner ? 200 : 25;
+$fn = roundcorner ? (rc ? 200 : 20) : 20;
 
 
 roundcorner_size = roundcorner ? 5 : 0;
@@ -16,7 +19,7 @@ hanger_slot_span = 15 + hanger_slot_span_slop;
 hanger_slot_width_slop = 0.0;
 hanger_slot_width = 10 + hanger_slot_width_slop;
 
-cap_crown_height = 30;
+cap_crown_height = 10;
 cap_funnel_height = 10;
 
 
