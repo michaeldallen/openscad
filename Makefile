@@ -1,3 +1,3 @@
 clean : 
-	rm -fv *.stl
+	find * -name '*.stl' -exec echo rm -v {} \;
 
