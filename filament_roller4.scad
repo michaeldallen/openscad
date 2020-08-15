@@ -13,8 +13,9 @@ rcness = fine ? wickedfine ? 200 : 100 : 50;
 pins = true; 
 roller = true; 
 
-$fn = roundcorner ? (rc ? rcness : 20) : 20;
+halve = true;
 
+$fn = roundcorner ? (rc ? rcness : 20) : 20;
 
 roundcorner_size = roundcorner ? 5 : 0;
 
@@ -135,26 +136,30 @@ module stubby_post() {
 
 
 if (roller) {
-    difference() {
-        intersection() {
-            // cut off bottom half
-            model();
-            translate([0, 0, roller_diameter/4]) {
-                cube([roller_main_shaft_length + ((hanger_slot_width + cap_funnel_height + cap_crown_height ) * 2), roller_diameter, roller_diameter / 2], center = true);
+    if (halve) {
+        difference() {
+            intersection() {
+                // cut off bottom half
+                model();
+                translate([0, 0, -roller_diameter/4]) {
+                    cube([roller_main_shaft_length + ((hanger_slot_width + cap_funnel_height + cap_crown_height ) * 2), roller_diameter, roller_diameter / 2], center = true);
+                }
+            }
+            translate([-roller_main_shaft_length/4,0,0]) {
+                post();
+            }
+            translate([ roller_main_shaft_length/4,0,0]) {
+                post();
             }
         }
-        translate([-roller_main_shaft_length/4,0,0]) {
-            post();
-        }
-        translate([ roller_main_shaft_length/4,0,0]) {
-            post();
-        }
+    } else {
+        model();
     }
 }
 
 
 if (pins) {
-    translate([ roller_diameter / 2, roller_diameter, 0]) {
+    translate([ roller_diameter / 2, roller_diameter, roundcorner_size/2]) {
         stubby_post();
     }
 }
