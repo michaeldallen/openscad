@@ -1,6 +1,6 @@
 hex_size = 8.5;
 face_length = hex_size / sqrt(3);
-post_height = 10;
+post_height = 25;
 handle_height = 5;
 roundcorner = 2;
 
@@ -23,17 +23,17 @@ hull() {
         }
     }
     translate([0, 0, post_height + handle_height]) {
-        cylinder(h = post_height / 10, d = hex_size);
+        cylinder(h = (hex_size / 4), d = hex_size);
     }
         
 
 }
 hull() {
-    translate([0, 0, handle_height + (post_height / 10)]) {
-        color("blue") cylinder(h = post_height / 10, d = hex_size);
+    translate([0, 0, handle_height +  + (roundcorner / 2)]) {
+        cylinder(h = (hex_size / 4), d = hex_size);
     }
-    translate([0, 0, handle_height]) {
-        color("red") cylinder(h = post_height / 10, d = hex_size * 1.2 );
+    translate([0, 0, handle_height + (roundcorner / 2)]) {
+        cylinder(h = 0.001, d = hex_size * 1.2 );
     }
 }
 
@@ -47,11 +47,19 @@ minkowski() {
                 translate([hex_size * 4, 0, 0]) {
                     cylinder(h = handle_height, d = hex_size * 1/2);
                 }
+                translate([hex_size * -4, 0, 0]) {
+                    cylinder(h = handle_height, d = hex_size * 1/2);
+                }
+
             }
             translate([hex_size * 4, 0, 0]) {
                 cylinder(h = handle_height, d = hex_size);
             }
+            translate([hex_size * -4, 0, 0]) {
+                cylinder(h = handle_height, d = hex_size);
+            }
         }
+        
     sphere(r=roundcorner / 2);
 
 }

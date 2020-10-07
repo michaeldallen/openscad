@@ -4,8 +4,12 @@ post_height = 10;
 handle_height = 5;
 roundcorner = 2;
 
-//$fn = 125;
-$fn = 12;
+fn_upper = 200;
+fn_lower = 12;
+
+rc = false;
+$fn = rc ? fn_upper : fn_lower;
+
 
 
 
@@ -48,12 +52,19 @@ minkowski() {
                     cylinder(h = handle_height, d = hex_size * 1/2);
                 }
             }
-            translate([hex_size * 4, 0, 0]) {
-                cylinder(h = handle_height, d = hex_size);
-            }
         }
     sphere(r=roundcorner / 2);
 
 }
   
-
+translate([hex_size * 5.1, 0, 0]) {
+    difference() {
+        minkowski() {
+            cylinder(h = handle_height, d = 16);
+            sphere(r=roundcorner / 2);
+        }
+        translate([0, 0, -roundcorner]) {
+            cylinder(h = handle_height + (roundcorner * 2), d=12);
+        }
+    }
+}
