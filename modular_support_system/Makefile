@@ -2,21 +2,18 @@
 
 OS := $(shell uname -s)
 ifeq (${OS},Darwin)
-	machine := mac
+	OpenSCAD := /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
 else ifeq (${OS},Linux)
-	machine := lin
+	OpenSCAD := /usr/bin/openscad
 endif
 
-foo :
+diag :
 	echo OS: ${OS}
-	echo machine: ${machine}
-
-#EOF
-
-bar :
-	file /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
+	echo OpenSCAD: ${OpenSCAD}
+	${OpenSCAD}
 
 
 clean :
 	find * -name '*~' -exec rm -v {} \;
 
+#EOF
