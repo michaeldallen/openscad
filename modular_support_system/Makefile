@@ -1,9 +1,15 @@
 #BOF
 
 OS := $(shell uname -s)
+ifeq (${OS},Darwin)
+	machine := mac
+else ifeq (${OS},Linux)
+	machine := lin
+endif
 
 foo :
 	echo OS: ${OS}
+	echo machine: ${machine}
 
 #EOF
 
