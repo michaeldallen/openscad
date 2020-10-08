@@ -29,14 +29,22 @@ hull() {
 }
 
 
-
+hull() {
 translate([-(peg_width / 2), 0, 0]) {
     color("green") cylinder(d = peg_width, h = peg_height);
 }
-translate([0, -(peg_width / 2), 0]) {
+translate([-(peg_width / 2), -(peg_width / 2), 0]) {
+    color("green") cylinder(d = peg_width, h = peg_height);
+}
+}
+color("pink") hull() {
+    translate([0, -(peg_width / 2), 0]) {
     cylinder(d = peg_width, h = peg_height);
 }
-
+translate([-(peg_width / 2), -(peg_width / 2), 0]) {
+    color("green") cylinder(d = peg_width, h = peg_height);
+}
+}
 
 translate([base_length + (peg_width / 2), 0, 0]) {
     color("blue") cylinder(d = peg_width, h = peg_height);

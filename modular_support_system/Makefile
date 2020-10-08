@@ -13,6 +13,9 @@ diag :
 	${OpenSCAD}
 
 
+%.stl : %.scad
+	${OpenSCAD} --o $@ $<
+
 clean :
 	find * -name '*~' -exec rm -v {} \;
 
